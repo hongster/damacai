@@ -1,0 +1,10 @@
+[project]
+name = "damacai"
+version = "0.1.0"
+description = "Da Ma Cai result scrapper and result repository"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.14"
+dependencies = [
+    "requests>=2.32.5",
+]
