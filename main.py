@@ -2,18 +2,22 @@ import json
 import time
 from pathlib import Path
 import requests
-
+import re
 def main():
-    """Start the result scrapping procdess.
+    """Start the result scrapping process.
     Results are stored in `results/` folder, relative to this script.
     Refer to https://tech.mrleong.net/scrapping-da-ma-cai-4d-results for scrapping technique.
     """
 
+    print("Getting draw dates...")
     draw_dates = get_draw_dates()
+    has_new_result = False
+
     for draw_date in draw_dates:
         if has_saved_result(draw_date):
             continue
-        
+
+        has_new_result = True
         print("Getting result for draw date: " + draw_date)
         result = get_result(draw_date)
         print("Saving result for draw date: " + draw_date)
@@ -21,6 +25,24 @@ def main():
 
         # Avoid rate limiting.
         time.sleep(0.2)
+    
+    if has_new_result:
+        print("Saving draw dates")
+        save_draw_dates(draw_dates)
+
+def save_draw_dates(dates: list[str]) -> None:
+    """Save draw dates to file, overwriting existing file.
+    The file is located relative to current script directory: `results/draw_dates.json`
+    """
+
+    dates.sort()
+    data = {
+        "last_draw_date": dates[-1],
+        "draw_dates": dates
+    }
+
+    draw_dates_file = Path(__file__).parent / "results" / "draw_dates.json"
+    draw_dates_file.write_text(json.dumps(data))
 
 def get_draw_dates() -> list[str]:
     """Get all draw dates.
@@ -36,7 +58,11 @@ def get_draw_dates() -> list[str]:
         print("Error: Could not decode JSON from the response.")
         print("Response content:", response.text)
     
-    return data['drawdate'].split(' ')
+    dates = data['drawdate'].split()
+    # Expecting each date to be exactly 8 digits: YYYYMMDD
+    dates = [d for d in dates if re.fullmatch(r'\d{8}', d)]
+
+    return dates
 
 def get_result_link(draw_date: str) -> str:
     """Get temporary link for result of given draw date. 
@@ -67,7 +93,7 @@ def get_result(draw_date: str):
 
     return data
 
-def save_result(result, draw_date: str):
+def save_result(result, draw_date: str) -> None:
     """Save result to file, overwriting existing file.
     Result is JSON encoded.
     """
