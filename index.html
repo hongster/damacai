@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da Ma Cai API | Free Lottery Data Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; }
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        code { font-family: 'Fira Code', monospace; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <header class="relative py-20 overflow-hidden">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wide text-sky-400 uppercase bg-sky-400/10 rounded-full">
+                Open Source API
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+                Da Ma Cai <span class="gradient-text">Draw Results</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+                A lightweight, JSON-based API service for historical and latest Da Ma Cai lottery results. 
+                Hosted on GitHub for 100% uptime and zero latency.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#docs" class="px-8 py-3 bg-sky-500 hover:bg-sky-400 text-white font-bold rounded-lg transition">
+                    View Documentation
+                </a>
+                <a href="https://github.com/hongster/damacai" target="_blank" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-lg border border-slate-700 transition">
+                    <i class="fab fa-github mr-2"></i>GitHub Source
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 bg-slate-900/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-sky-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-sky-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Lightning Fast</h3>
+                    <p class="text-slate-400">Static JSON files served via high-speed CDN ensures your application gets data instantly.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-indigo-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Easy Integration</h3>
+                    <p class="text-slate-400">Simple RESTful structure. No API keys, no rate limits, just simple HTTP GET requests.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-emerald-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Always Updated</h3>
+                    <p class="text-slate-400">Automated scrapers ensure the latest draw results are pushed to the repository immediately.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="docs" class="container mx-auto px-6 py-20">
+        <h2 class="text-3xl font-bold mb-12 text-center">API Documentation</h2>
+        
+        <div class="max-w-4xl mx-auto space-y-12">
+            
+            <div>
+                <div class="flex items-center mb-4">
+                    <span class="bg-green-500 text-xs font-bold px-2 py-1 rounded mr-3">GET</span>
+                    <h3 class="text-xl font-mono text-sky-400">/results/draw_dates.json</h3>
+                </div>
+                <p class="mb-4 text-slate-300">Retrieve a comprehensive list of all available draw dates in the database.</p>
+                <div class="relative group">
+                    <pre class="rounded-xl !bg-slate-950 shadow-2xl"><code class="language-bash">curl https://damacai.hongineer.com/results/draw_dates.json</code></pre>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center mb-4">
+                    <span class="bg-green-500 text-xs font-bold px-2 py-1 rounded mr-3">GET</span>
+                    <h3 class="text-xl font-mono text-sky-400">/results/{YEAR}/{YYYYMMDD}.json</h3>
+                </div>
+                <p class="mb-4 text-slate-300">Retrieve specific draw results for a given date. Replace placeholders with the desired date.</p>
+                <div class="relative group">
+                    <pre class="rounded-xl !bg-slate-950 shadow-2xl"><code class="language-bash"># Example: Fetching results for Feb 25, 2026
+curl https://damacai.hongineer.com/results/2026/20260225.json</code></pre>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <div class="bg-slate-800 px-6 py-3 border-b border-slate-700 flex justify-between items-center">
+                    <span class="text-sm font-semibold text-slate-300 italic">Example JSON Response</span>
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                </div>
+                <pre class="!bg-transparent !m-0"><code class="language-json">{
+  "drawNo": "6043/26",
+  "drawDate": "25/02/2026",
+  "p1": "7238",
+  "p2": "3170",
+  "p3": "9720",
+  "consolidateList": [...],
+  "starterList": [...],
+  ...
+}</code></pre>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="container mx-auto px-6 py-12 border-t border-slate-800/50">
+        <div class="glass-card p-8 rounded-2xl border-red-500/20 bg-red-500/5">
+            <h3 class="text-xl font-bold mb-4 text-red-400">
+                <i class="fas fa-exclamation-triangle mr-2"></i> Legal Disclaimer
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8 text-sm text-slate-400 leading-relaxed">
+                <div class="space-y-4">
+                    <p>
+                        <strong class="text-slate-200">Non-Affiliation:</strong> This project is an independent open-source initiative. It is <span class="text-red-400 font-semibold">neither affiliated with, nor endorsed by</span> Pan Malaysian Pools Sdn. Bhd. (Da Ma Cai). All trademarks, logos, and brand names are the property of their respective owners.
+                    </p>
+                    <p>
+                        <strong class="text-slate-200">Educational Use:</strong> This API and the associated scraper are provided strictly for <span class="italic text-slate-200">educational and research purposes</span> to demonstrate web data extraction and static API hosting techniques.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <p>
+                        <strong class="text-slate-200">No Warranty:</strong> The data is provided "as-is" without any guarantees of accuracy, completeness, or timeliness. Use this data at your own risk. The developer is not responsible for any financial losses or damages resulting from the use of this service.
+                    </p>
+                    <p>
+                        <strong class="text-slate-200">No Financial Advice:</strong> Lottery involves financial risk. This service does not encourage gambling. If you or someone you know has a gambling problem, please seek professional help.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-800 py-12 mt-10">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-500 mb-4">
+                Maintained by <a href="https://github.com/hongster" class="text-sky-400 hover:underline">hongster</a>. 
+                Data is scraped for educational purposes.
+            </p>
+            <div class="flex justify-center space-x-6 text-slate-400">
+                <a href="https://github.com/hongster/damacai" class="hover:text-white transition"><i class="fab fa-github text-2xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</body>
+</html>

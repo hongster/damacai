@@ -1,12 +1,11 @@
 # Da Ma Cai API & Scraper
 
-Da Ma Cai is a lottery in Malaysia. This project scrapes draw results, organizes them, and makes them consumable by applications.
+A lightweight, JSON-based API service for historical and latest Da Ma Cai lottery results. Hosted on GitHub for 100% uptime and zero latency.
 
 ## Features
-- Serve draw results as JSON
-- Scrapes draw results from the Da Ma Cai website.
-- Saves results in organized JSON files by year and draw date.
-- Avoids redundant downloads by checking existing results.
+- Static JSON files served via high-speed CDN ensures your application gets data instantly.
+- Simple RESTful structure. No API keys, no rate limits, just simple HTTP GET requests.
+- Automated scrapers ensure the latest draw results are pushed to the repository immediately.
 
 ## API
 
@@ -75,3 +74,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## References
 - [Scraping Da Ma Cai 4D Results](https://tech.mrleong.net/scrapping-da-ma-cai-4d-results)
+
+## Disclaimer
+- This project is an independent open-source initiative. It is neither affiliated with, nor endorsed by Pan Malaysian Pools Sdn. Bhd. (Da Ma Cai). All trademarks, logos, and brand names are the property of their respective owners. 
+- This API and the associated scraper are provided strictly for educational and research purposes to demonstrate web data extraction and static API hosting techniques. 
+- The data is provided "as-is" without any guarantees of accuracy, completeness, or timeliness. Use this data at your own risk. The developer is not responsible for any financial losses or damages resulting from the use of this service. 
+- Lottery involves financial risk. This service does not encourage gambling. If you or someone you know has a gambling problem, please seek professional help. 
